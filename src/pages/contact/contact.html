@@ -1,17 +1,78 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+    <ion-title>Profile </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
+<ion-content padding>
+  <ion-card *ngIf="isLoggedIn; else facebookLogin">
+    <ion-card-header>{{users.name}} 
+    <br>
+      <button ion-button  clear small (click)="logout()">
+        Logout
+         </button>
+     
+         
+    </ion-card-header>
+   
+    <p>
+      <img src="{{users.picture.data.url}}" width="1" alt="{{users.name}}" />
+    </p>
+    <ion-card-content>
+    
+         <button ion-button  color="secondary" icon-left  clear small (click)="addProduct()">
+          <ion-icon name="create"></ion-icon>
+          <div>Ajouter Publication</div> </button>
+     
+    </ion-card-content>
+    <ion-list>
+      <ion-card *ngFor="let product of products">
+        
+          <ion-card-header><h1>{{ product.name }}</h1> </ion-card-header>
+     <ion-card-content>
+  
+          <h2 class="categ">{{ product.category_name }}</h2>
+          <h2>Description :{{ product.description }}</h2>
+
+          <h2 >{{ product.duedate | date:'dd/MM/yyyy' }}</h2>
+          <h2 class="price">{{ product.price | currency:'DT  ':true }}</h2>
+          <h2>{{ product.adresse }}</h2>
+        </ion-card-content>
+        <ion-row text-center>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="editProduct(product.id)">
+              <ion-icon name="create"></ion-icon>
+              <div>Editer</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small (click)="removeProduct(product)">
+              <ion-icon name="trash"></ion-icon>
+              <div>Supprimer</div>
+            </button>
+          </ion-col>
+  
+  
+       
+  
+  
+        
+      </ion-row>
+  
+    </ion-card>
   </ion-list>
+
+  </ion-card>
+  
+
+
+  <ng-template #facebookLogin>
+    <div  id="cool-button-div">
+
+    <button ion-button icon-right (click)="login()">
+      Login with
+      <ion-icon name="logo-facebook"></ion-icon>
+    </button>
+    </div>
+  </ng-template>
 </ion-content>

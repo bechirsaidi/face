@@ -1,17 +1,49 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      Ionic SQLite Example
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-searchbar (ionInput)="filterProducts($event)" [(ngModel)]="searchText"></ion-searchbar>
+  <ion-list>
+    <ion-card *ngFor="let product of products">
+      
+        <ion-card-header><h1>{{ product.name }} - {{ product.phone }}</h1> </ion-card-header>
+   <ion-card-content>
+
+
+        <h2 style="color: rgb(255, 94, 0);">{{ product.category_name }} à vendre</h2>
+        <h2>Description : {{ product.description }}</h2>
+
+        <h2  >{{ product.duedate | date:'dd/MM/yyyy' }}</h2>
+        <h2 class="price">Prix : {{ product.price | currency:'DT  ':true }}</h2>
+        <h2>Adresse :{{ product.adresse }}</h2>
+      </ion-card-content>
+      <ion-row text-center>
+       
+        <ion-col>
+          <a href="tel:{{ product.phone }}" ion-button icon-left clear small>
+            <ion-icon name="call"></ion-icon>
+            <div>Appelez-moi</div>
+          </a>
+        </ion-col>
+
+
+     
+
+
+      
+    </ion-row>
+
+  </ion-card>
+</ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <p>Total: {{ products.length }}</p>
+    
+  </ion-toolbar>
+</ion-footer>

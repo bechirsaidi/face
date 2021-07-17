@@ -10,6 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Facebook } from '@ionic-native/facebook';
+import { DatabaseProvider } from '../providers/database/database';
+import { ProductProvider } from '../providers/product/product';
+import { CategoryProvider } from '../providers/category/category';
+import { SQLite } from '@ionic-native/sqlite';
+import { WelcomePage } from '../pages/welcome/welcome';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +24,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    WelcomePage,
+    
   ],
   imports: [
     BrowserModule,
@@ -29,12 +38,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    WelcomePage,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Facebook,
+    DatabaseProvider,
+    ProductProvider,
+    CategoryProvider,
+    SQLite,
+    
+
+
   ]
 })
 export class AppModule {}

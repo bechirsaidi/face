@@ -1,5 +1,7 @@
 {
   "name": "face",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
